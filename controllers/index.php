@@ -43,7 +43,6 @@ elseif (isset($_POST['name']) && isset($_POST['use']))
 
 elseif (isset($_GET['hitting']))
 {
-    var_dump(isset($_SESSION['perso']));
     if(!isset($_SESSION['perso']))
     {
         $message = "Veuillez créer/utiliser un personnage.";
@@ -53,7 +52,6 @@ elseif (isset($_GET['hitting']))
         $persoToHit = $manager->getPersonnage($_GET['hitting']);
 
         $return = $_SESSION['perso']->attack($persoToHit);
-        var_dump($return);
         if($return == Personnage::Its_myself)
         {
             $message = "But.. Why would I hit myself ?!";
