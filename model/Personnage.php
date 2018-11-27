@@ -5,6 +5,10 @@ declare(strict_types = 1);
 
 class Personnage
 {
+    const Its_myself = 0;
+    const Personnage_died = 1;
+    const Personnage_attack = 2;
+    
     private $_id;
     private $_name;
     private $_damage;

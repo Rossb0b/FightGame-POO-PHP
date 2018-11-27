@@ -30,14 +30,14 @@ class PersonnageManager
 
     public function delete(Personnage $perso)
     {
-        $req = $this->_db->exec('DELETE FROM personnages WHERE id = '. $perso->id());
+        $req = $this->_db->exec('DELETE FROM personnages WHERE name = "' . $perso->get_name() . '"');
     }
 
     public function update(Personnage $perso)
     {
-        $req = $this->_db->prepare('UPDATE personnages SET damage = :damage WHERE id = :id');
+        $req = $this->_db->prepare('UPDATE personnages SET damage = :damage WHERE name = "' . $perso->get_name() . '"');
         
-        $req->bindValue(':damage', $perso->damage(), PDO::PARAM_INT);
+        $req->bindValue(':damage', $perso->get_damage(), PDO::PARAM_INT);
         $req->execute();
     }
 

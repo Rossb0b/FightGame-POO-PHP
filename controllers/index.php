@@ -12,7 +12,7 @@ spl_autoload_register('chargerClasse');
 session_start();
 $db = connect();
 $manager = new PersonnageManager($db);
-$persos = $manager->listPersonnages();
+
 
 
 if (isset($_POST['name']) && isset($_POST['create']))
@@ -54,28 +54,28 @@ elseif (isset($_GET['hitting']))
 
         $return = $_SESSION['perso']->attack($persoToHit);
         var_dump($return);
-        if($return = Personnage::Its_myself)
+        if($return == Personnage::Its_myself)
         {
             $message = "But.. Why would I hit myself ?!";
         }
-        if($return = Personnage::Personnage_attack)
+        if($return == Personnage::Personnage_attack)
         {
             $message = "You did hit the target.";
 
-            $manager->update($perso);
+            $manager->update($_SESSION['perso']);
             $manager->update($persoToHit);
         }
-        if($return = Personnage::Personnage_died)
+        if($return == Personnage::Personnage_died)
         {
             $message = "You killed this one !";
 
-            $manager->update($perso);
+            $manager->update($_SESSION['perso']);
             $manager->delete($persoToHit);
         }
-    }
-}
+    }        
+} 
 
-
+$persos = $manager->listPersonnages();
     
 include "../views/indexVue.php";
 ?>

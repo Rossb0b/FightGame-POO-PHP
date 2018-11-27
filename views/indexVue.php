@@ -21,7 +21,7 @@
   ?>
 
   <?php
-    if (isset($perso))
+    if (isset($_SESSION['perso']))
     {
   ?>
     <div class="MyPersonnage" style="border:1px solid blue; margin-top:10vh;">
